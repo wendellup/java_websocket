@@ -53,9 +53,9 @@ public class UrlSettingServlet extends HttpServlet {
 			}
 		}
 
-		resp.setContentType("text/html");
-		resp.getWriter().print(
-				"{\"result\":\"" + result + "\",\"url\":\"" + url_result
-						+ "\"}");
+//		resp.setContentType("text/html");
+//		resp.getWriter().print(
+//				"{\"result\":\"" + result + "\",\"url\":\"" + url_result
+//						+ "\"}");
 	}
 }
