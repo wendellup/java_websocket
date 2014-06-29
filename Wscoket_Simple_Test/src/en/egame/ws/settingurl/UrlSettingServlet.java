@@ -36,7 +36,7 @@ public class UrlSettingServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+			throws ServletException {
 		String key = req.getParameter("key");
 		String result = "FAIL";
 		String url_result = "";
@@ -47,9 +47,19 @@ public class UrlSettingServlet extends HttpServlet {
 				
 				List<Session> sessions = SessionContext.getSessions();
 				for (Session s : sessions) {
-					s.getBasicRemote().sendText(url_result);
+					try {
+						s.getBasicRemote().sendText(url_result);
+					} catch (IOException e) {
+						try {
+							s.close();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						e.printStackTrace();
+					}
+//					sessions.remove(s);
 				}
-				result = "OK";
+//				result = "OK";
 			}
 		}
 
