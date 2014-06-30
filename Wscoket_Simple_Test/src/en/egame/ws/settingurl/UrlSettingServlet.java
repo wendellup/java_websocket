@@ -50,12 +50,13 @@ public class UrlSettingServlet extends HttpServlet {
 					try {
 						s.getBasicRemote().sendText(url_result);
 					} catch (IOException e) {
+						e.printStackTrace();
+					} finally{
 						try {
 							s.close();
-						} catch (IOException e1) {
-							e1.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
 						}
-						e.printStackTrace();
 					}
 //					sessions.remove(s);
 				}
